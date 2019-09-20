@@ -5,7 +5,7 @@
 React-Native로 크로스 플랫폼 뮤직 플레이어 앱 만들기(iOS/Android 선택)
 
 ### 추가 학습내용
-**추가 학습**: react-native(react), ES6
+**추가 학습**: react-native(react), ES6 <br>
 **사용 라이브러리**: react-native, react-native-router-flux, react-native-track-player
 
 ### 참가자
@@ -38,6 +38,7 @@ React-Native로 크로스 플랫폼 뮤직 플레이어 앱 만들기(iOS/Androi
 ### 가이드 및 유의사항
 >1) [부스트코스 에이스 2019: 커리어 부스팅 프로그램 전체 가이드 확인하기](https://docs.google.com/document/d/1-5fw6y2RopqAzfEsQJXjaKib63_7fuqeIdq-ulFzTP8/edit?usp=sharing) <br>
 >2) [기업 프로젝트 가이드 확인하기](https://docs.google.com/presentation/d/1zqfl-b0s_xAmA8JicA7diY5O8NapnZj0XqoPqK0fDZI/edit?usp=sharing)
+>3) [Slack 바로가기](boostcourseofficial.slack.com)
 
 
 
