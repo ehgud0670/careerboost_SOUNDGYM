@@ -8,13 +8,15 @@
 import TrackPlayer from 'react-native-track-player';
 import React, {Fragment} from 'react';
 import { StyleSheet, View,Text, Image } from 'react-native';
-
+import { Router } from 'react-native-router-flux';
 export default class App extends React.Component {
   render(){
     return (
-       <View style={styles.container}>
-        <Text>Hello, My name is Doe Hyung.</Text>
-       </View>
+      <View>
+        <Text>
+          Hello
+        </Text>
+      </View>
     );
   }
 }
