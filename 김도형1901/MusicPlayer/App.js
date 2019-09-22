@@ -5,17 +5,18 @@
  * @format
  * @flow
  */
+import React, { Component } from 'react';
 import TrackPlayer from 'react-native-track-player';
-import React, {Fragment} from 'react';
-import { StyleSheet, View,Text, Image } from 'react-native';
+import {StyleSheet, View, Image,Text} from 'react-native';
 import { Router } from 'react-native-router-flux';
-export default class App extends React.Component {
-  render(){
+
+export default class App extends Component {
+  render() {
     return (
-      <View>
-        <Text>
-          Hello
-        </Text>
+      <View style={styles.container}>
+        <Image source={require('./react/resources/coogie.png')}style={styles.elbum}/>
+        <Text style={styles.title}>Blessed</Text>
+        <Text style={styles.singer}>coogie</Text>
       </View>
     );
   }
@@ -23,11 +24,21 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
-    backgroundColor: '#fff',
-    alignItems : 'center',
-    justifyContent : 'center' 
+    flex: 1,
+    backgroundColor:'#808080',
+    alignItems:'center',
+    top:0
+  },
+  title :{
+    fontSize:30,
+    fontWeight: 'bold',
+    marginTop:20
+  },
+  elbum:{
+    width:415, 
+    height:415
+  },
+  singer :{
+    fontSize:20,
   }
 });
-
-// export default App;
