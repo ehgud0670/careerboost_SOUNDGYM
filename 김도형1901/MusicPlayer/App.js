@@ -1,44 +1,85 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-import React, { Component } from 'react';
-import TrackPlayer from 'react-native-track-player';
-import {StyleSheet, View, Image,Text} from 'react-native';
-import { Router } from 'react-native-router-flux';
+import React, { useEffect } from "react";
+import { StyleSheet, View } from "react-native";
+import TrackPlayer from "react-native-track-player";
+import { usePlaybackState } from "react-native-track-player/lib";
+import Player from "./react/components/Player";
+import playlistData from "./react/data/playlist.json";
 
-export default class App extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Image source={require('./react/resources/coogie.png')}style={styles.elbum}/>
-        <Text style={styles.title}>Blessed</Text>
-        <Text style={styles.singer}>coogie</Text>
-      </View>
-    );
+export default function App() {
+  const playbackState = usePlaybackState();
+
+  useEffect(() => {
+    TrackPlayer.setupPlayer();
+    TrackPlayer.updateOptions({
+      stopWithApp: true,
+      capabilities: [
+        TrackPlayer.CAPABILITY_PLAY,
+        TrackPlayer.CAPABILITY_PAUSE,
+        TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+        TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS
+      ],
+      compactCapabilities: [
+        TrackPlayer.CAPABILITY_PLAY,
+        TrackPlayer.CAPABILITY_PAUSE
+      ]
+    });
+  }, []);
+
+  async function togglePlayback() {
+    const currentTrack = await TrackPlayer.getCurrentTrack();
+    if (currentTrack == null) {
+      await TrackPlayer.reset();
+      await TrackPlayer.add(playlistData);
+      await TrackPlayer.play();
+    } else {
+      if (playbackState === TrackPlayer.STATE_PAUSED) {
+        await TrackPlayer.play();
+      } else {
+        await TrackPlayer.pause();
+      }
+    }
   }
+
+  return (
+    <View style={styles.container}>
+      <Player
+        onNext={_skipToNext}
+        style={styles.player}
+        onPrevious={_skipToPrevious}
+        onTogglePlayback={togglePlayback}
+      />
+    </View>
+  );
+}
+
+
+async function _skipToNext() {
+  try {
+    await TrackPlayer.skipToNext();
+  } catch (_) {}
+}
+
+async function _skipToPrevious() {
+  try {
+    await TrackPlayer.skipToPrevious();
+  } catch (_) {}
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:'#808080',
-    alignItems:'center',
-    top:0
+    alignItems: "center",
+    backgroundColor: "grey"
   },
-  title :{
-    fontSize:30,
-    fontWeight: 'bold',
-    marginTop:20
+  description: {
+    width: "80%",
+    marginTop: 20,
+    textAlign: "center"
   },
-  elbum:{
-    width:415, 
-    height:415
+  player: {
+    marginTop: 40
   },
-  singer :{
-    fontSize:20,
+  state: {
+    marginTop: 20
   }
 });
